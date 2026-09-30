@@ -1,127 +1,43 @@
-# Festify — SIT120 Task 9.3D
+# Festify – Celebration Planning Studio
 
-## Celebrate more. Plan less.
+**Celebrate more. Plan less.**
 
-Festify is a responsive celebration planning web application developed for **Deakin University's SIT120 — Intro to Responsive Web Apps**.
+Festify is a responsive celebration planning web application developed using Vue.js. It allows users to explore celebration packages, select packages for their event, customise their celebration preferences, and submit a celebration plan.
 
-The project converts the original Festify wireframes and responsive form design into a functional **Vue 3 + Vite** application using a component-based architecture.
-
----
-
-## Project Overview
-
-Festify is designed to make celebration planning simpler and more organised.
-
-Users can explore different celebration packages, learn about the Festify concept, and complete a personalised celebration planning form.
-
-The application includes:
-
-* Responsive multi-page-style navigation
-* Home page with Festify introduction and features
-* Celebration packages page
-* Our Story page
-* Celebration Planner form
-* Form validation and inline feedback
-* Responsive form layouts
-* Submission acknowledgement
-* Parent-child component communication
-* Reusable Vue components
-* Responsive desktop, tablet and mobile layouts
+The project demonstrates Vue Router for single-page application navigation, Pinia for state management, responsive design across mobile, tablet and desktop devices, and interactive form functionality.
 
 ---
 
-## Technologies Used
+## Features
 
-* **Vue 3**
-* **Vite**
-* **JavaScript**
-* **HTML5**
-* **CSS3**
-* **Flexbox**
-* **CSS Grid**
-* **Responsive Media Queries**
-* **GitHub**
+- Responsive celebration planning interface
+- Home page introducing Festify
+- Celebration package browsing
+- Package selection and removal
+- Real-time package count and total cost
+- Celebration planner form
+- Form validation
+- Form submission acknowledgement
+- Vue Router single-page application navigation
+- Active navigation link styling
+- Pinia state management
+- Light and dark mode
+- Responsive layouts for mobile, tablet and desktop
+- Accessible navigation and form controls
+- Production-ready Vite build
 
 ---
 
-## Vue Features Demonstrated
+## Technology Stack
 
-This project demonstrates several Vue 3 concepts required for Task 9.3D.
-
-### Single File Components
-
-The application is separated into reusable `.vue` components:
-
-* `AppHeader.vue`
-* `AppFooter.vue`
-* `HomeView.vue`
-* `PackagesView.vue`
-* `AboutView.vue`
-* `ContactForm.vue`
-* `App.vue`
-
-### Props
-
-Props are used to pass data and configuration from the parent `App.vue` component into `ContactForm.vue`.
-
-The form receives:
-
-* Initial form data
-* Form configuration
-
-### Emits and Custom Events
-
-`ContactForm.vue` uses `defineEmits()` to send the completed form data back to `App.vue` through the custom:
-
-```text
-submit-form
-```
-
-event.
-
-The parent component listens for this event and stores the submitted data for the acknowledgement card.
-
-### v-model
-
-The Celebration Planner demonstrates two-way data binding using `v-model`.
-
-The form includes:
-
-* Text inputs
-* Email input
-* Telephone input
-* Date input
-* Numeric input
-* Radio buttons
-* Dropdown/select fields
-* Checkbox selections
-* Textarea
-
-### v-model.number
-
-The guest count field uses:
-
-```text
-v-model.number
-```
-
-to convert the entered guest count into a numeric value.
-
-### Dynamic v-for Rendering
-
-Dropdown and checkbox options are generated dynamically using `v-for`.
-
-This keeps the form options organised and reduces repetitive HTML.
-
-### Conditional Rendering
-
-Vue conditional rendering is used for:
-
-* Validation messages
-* Success messages
-* Form feedback
-* Navigation between application views
-* Submission acknowledgement
+- Vue.js
+- Vue Router
+- Pinia
+- Vite
+- JavaScript
+- HTML5
+- CSS3
+- Google Fonts
 
 ---
 
@@ -129,6 +45,10 @@ Vue conditional rendering is used for:
 
 ```text
 my-vue-website/
+├── index.html
+├── package.json
+├── package-lock.json
+├── vite.config.js
 │
 ├── public/
 │   ├── festify1.jpg
@@ -137,292 +57,215 @@ my-vue-website/
 │   ├── packages2.jpg
 │   └── packages3.jpg
 │
-├── src/
-│   ├── assets/
-│   │   └── styles.css
-│   │
-│   ├── components/
-│   │   ├── AppHeader.vue
-│   │   ├── AppFooter.vue
-│   │   ├── HomeView.vue
-│   │   ├── PackagesView.vue
-│   │   ├── AboutView.vue
-│   │   └── ContactForm.vue
-│   │
-│   ├── App.vue
-│   └── main.js
-│
-├── .gitignore
-├── index.html
-├── package.json
-├── package-lock.json
-├── vite.config.js
-└── README.md
+└── src/
+    ├── main.js
+    ├── App.vue
+    │
+    ├── assets/
+    │   └── styles.css
+    │
+    ├── router/
+    │   └── index.js
+    │
+    ├── stores/
+    │   ├── theme.js
+    │   └── cart.js
+    │
+    └── components/
+        ├── AppHeader.vue
+        ├── AppFooter.vue
+        ├── HomeView.vue
+        ├── PackagesView.vue
+        ├── AboutView.vue
+        ├── ContactForm.vue
+        └── PlannerView.vue
 ```
 
----
+## Pages
 
-## Main Components
+### Home
 
-### App.vue
+The Home page introduces Festify and presents the celebration planning concept.
 
-The main parent component responsible for:
+### Packages
 
-* Managing the current application view
-* Handling navigation events
-* Passing initial form data to the planner
-* Receiving submitted form data
-* Displaying the persistent acknowledgement card
+The Packages page displays the available celebration packages.
 
-### AppHeader.vue
+Users can select packages and view their current celebration plan, including the number of selected packages and total package cost.
 
-Provides the main navigation and Festify branding.
+Available packages:
 
-It communicates navigation changes to `App.vue` using a custom `navigate` event.
+- Golden Hour Birthday – $149
+- Modern Romance – $399
+- Next Chapter – $179
+- Team Celebration – $279
 
-### AppFooter.vue
+### Our Story
 
-Provides the footer content and additional navigation links.
+The Our Story page explains the Festify concept, values and celebration experience.
 
-### HomeView.vue
+### Planner
 
-Introduces Festify and presents:
+The Planner page allows users to provide their celebration details, preferences, budget and contact information.
 
-* Hero section
-* Festify features
-* Planning process
-* Popular packages
-* Calls to action
-
-### PackagesView.vue
-
-Displays the available celebration packages and their information.
-
-### AboutView.vue
-
-Explains the purpose and concept behind Festify and presents the principles behind the application.
-
-### ContactForm.vue
-
-Provides the interactive Celebration Planner.
-
-It includes:
-
-* Event details
-* Style and preferences
-* Budget information
-* Contact details
-* Validation
-* Custom events
-* Form reset functionality
-* Successful submission feedback
+After submitting the form successfully, the application displays an acknowledgement containing the submitted celebration information and selected package details.
 
 ---
 
-## Celebration Planner Form
+## Vue Router
 
-The Celebration Planner collects:
+Festify uses Vue Router for single-page application navigation.
 
-### Event Details
+The application contains four routes:
 
-* Event type
-* Event date
-* Number of guests
-* Location type
+- /
+- /#/packages
+- /#/about
+- /#/planner
 
-### Style & Preferences
-
-* Preferred style
-* Preferred colour theme
-* Required products and services
-
-### Budget
-
-* Budget range
-* Additional requirements
-
-### Contact Details
-
-* Full name
-* Email address
-* Mobile number
-
-Required fields are validated before the form can be submitted.
+Hash-based routing is used to support deployment on the Deakin web server without requiring additional server-side routing configuration.
 
 ---
 
-## Form Validation
+## Pinia State Management
 
-The application provides inline validation feedback for invalid or incomplete fields.
+Festify uses two Pinia stores.
 
-Examples include:
+### Theme Store
 
-* Missing event type
-* Invalid or missing event date
-* Invalid guest count
-* Missing location type
-* Missing style or colour theme
-* No requirements selected
-* Missing budget
-* Invalid name
-* Invalid email address
-* Invalid mobile number
+The Theme Store manages the application's light and dark modes.
 
-Successful fields also provide positive feedback where appropriate.
+It contains:
 
----
+- `isDarkMode` state
+- `currentThemeClass` getter
+- `toggleDarkMode()` action
 
-## Submission Workflow
+### Cart Store
 
-The form uses a parent-child communication workflow.
+The Cart Store manages the user's selected celebration packages.
 
-```text
-User completes form
-        ↓
-ContactForm.vue validates data
-        ↓
-ContactForm.vue emits submit-form
-        ↓
-App.vue receives submitted data
-        ↓
-App.vue stores the submitted data
-        ↓
-Acknowledgement card is displayed
-        ↓
-ContactForm.vue resets its local form
-        ↓
-Acknowledgement remains visible
-```
+It contains:
 
-This demonstrates state being managed by the parent component while the child component manages its own form interaction.
+- `cart` state
+- `totalCount` getter
+- `totalCost` getter
+- `formattedSummary` getter
+- `addItem()` action
+- `removeItem()` action
+- `resetStore()` action
+
+The selected package information is shared between the Packages and Planner views.
 
 ---
 
 ## Responsive Design
 
-Festify follows a mobile-first responsive design approach.
+Festify implements three responsive breakpoints.
 
-The interface uses:
+| Device | Breakpoint | Layout |
+|---|---|---|
+| Mobile | `< 768px` | Stacked single-column layout |
+| Tablet | `768px – 1024px` | Two-column/reflow layout |
+| Desktop | `> 1024px` | Multi-column and horizontal layout |
 
-* CSS Flexbox
-* CSS Grid
-* Responsive media queries
-* Flexible containers
-* Responsive typography
-* Flexible images
-* Mobile-friendly form layouts
-* Responsive navigation
-* Accessible focus states
-
-The application was designed and tested across:
-
-* Desktop
-* Tablet
-* Mobile
+The responsive design adjusts navigation, package cards, forms, summaries and other content according to the available screen width.
 
 ---
 
-## Visual Design
+## Design
 
-Festify uses a premium and modern visual style based around:
+Festify uses a premium celebration-focused visual style.
 
-* Navy
-* Lavender
-* Coral
-* White
-* Light neutral backgrounds
+### Brand Colours
 
-Typography uses:
+| Colour | Hex |
+|---|---|
+| Navy | `#1A1B41` |
+| Navy Light | `#292A5C` |
+| Lavender | `#CDB4DB` |
+| Coral | `#FF6B6B` |
+| White | `#FFFFFF` |
+| Light Background | `#F8F6FA` |
 
-* **Poppins** for headings
-* **Inter** for body text
+### Typography
 
-The design focuses on clear hierarchy, consistent spacing, reusable components and accessible interaction states.
+- **Poppins** – headings and prominent interface elements
+- **Inter** – body text and supporting content
 
 ---
 
-## Running the Project Locally
+## Getting Started
 
-### 1. Clone the repository
+### Prerequisites
 
-```bash
-git clone https://github.com/Vedant3007/Festify_SIT120
-```
+The following software is required:
 
-### 2. Open the project
+- Node.js
+- npm
 
-```bash
-cd my-vue-website
-```
+### Clone the Repository
 
-### 3. Install dependencies
+    git clone https://github.com/Vedant3007/SIT120_Festify
 
-```bash
-npm install
-```
 
-### 4. Start the development server
+### Navigate to the Project
 
-```bash
-npm run dev
-```
+    cd festify-celebration-planner
 
-Vite will provide a local development URL in the terminal.
+### Install Dependencies
+
+    npm install
+
+### Run the Development Server
+
+    npm run dev
+
+The application will be available at the local Vite development URL shown in the terminal, normally:
+
+    http://localhost:5173/
 
 ---
 
 ## Production Build
 
-To create the production version of the application:
+To create a production build:
 
-```bash
-npm run build
-```
+    npm run build
 
-The compiled production files are generated inside:
+Vite generates the production files in:
 
-```text
-dist/
-```
+    dist/
 
-The production build contains the compiled HTML, CSS, JavaScript and public assets required to run the application.
+The `dist` directory is generated automatically and is not required in the source-code repository.
 
 ---
 
-## Deployment
+## Project Purpose
 
-The production build was deployed to the **Deakin University student web server** for assessment.
+The project demonstrates the development of a responsive Vue.js single-page application using component-based architecture, client-side routing and centralised state management.
 
-The deployed version uses the contents of the generated `dist/` folder.
-
----
-
-## Academic Context
-
-**Unit:** SIT120 — Intro to Responsive Web Apps
-**Assessment:** Task 9.3D
-**University:** Deakin University
-**Project:** Festify — Smart Celebration Studio
-
-Festify was developed as an academic project to demonstrate responsive web development and Vue 3 application development.
+The application combines interactive package selection, celebration planning forms, responsive layouts and light/dark theme functionality into a single user experience.
 
 ---
 
-## Project Learning Outcomes
+## Assessment Requirements Demonstrated
 
-Through this project, the development process demonstrated understanding of:
+The project demonstrates:
 
-* Responsive web design
-* Vue 3 component architecture
-* Single File Components
-* Props
-* Emits and custom events
-* Two-way data binding
-* Form handling and validation
-* Reactive state management
-* Parent-child communication
-* Vite development and production builds
-* Web application deployment
+- Vue.js single-page application development
+- Vue Router implementation
+- Pinia state management
+- Multiple Pinia stores
+- State, getters and actions
+- Interactive package selection
+- Real-time state updates
+- Light and dark mode
+- Responsive design
+- Mobile, tablet and desktop breakpoints
+- Form validation and submission
+- Component-based development
+- Production build using Vite
 
 ---
 
@@ -430,13 +273,5 @@ Through this project, the development process demonstrated understanding of:
 
 **Vedant Patel**
 
-Deakin University
+Deakin University  
 Bachelor of Computer Science
-
----
-
-## Project Status
-
-**Completed — SIT120 Task 9.3D**
-
-The application has been built, tested, production-built with Vite and deployed for assessment.
