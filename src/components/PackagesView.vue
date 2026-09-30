@@ -1,4 +1,5 @@
 <template>
+
   <main class="packages-page">
 
     <!-- =====================================================
@@ -29,21 +30,19 @@
 
           <div class="hero-actions">
 
-            <button
-              type="button"
+            <RouterLink
+              to="/planner"
               class="btn btn-primary"
-              @click="$emit('navigate', 'planner')"
             >
               Create My Plan
-            </button>
+            </RouterLink>
 
-            <button
-              type="button"
+            <RouterLink
+              to="/"
               class="btn hero-secondary-btn"
-              @click="$emit('navigate', 'home')"
             >
               Back to Home
-            </button>
+            </RouterLink>
 
           </div>
 
@@ -60,6 +59,7 @@
           >
 
           <div class="packages-image-overlay">
+
             <strong>
               Many ways to celebrate
             </strong>
@@ -67,6 +67,7 @@
             <span>
               Find the right starting point
             </span>
+
           </div>
 
         </div>
@@ -130,10 +131,22 @@
 
             <button
               type="button"
-              class="btn btn-secondary"
-              @click="$emit('navigate', 'planner')"
+              class="btn btn-secondary package-action-button"
+              :class="{
+                'package-added': isInCart('birthday')
+              }"
+              :disabled="isInCart('birthday')"
+              @click="addPackage(packages[0])"
             >
-              Plan This Package
+
+              <span v-if="isInCart('birthday')">
+                Added to Plan ✓
+              </span>
+
+              <span v-else>
+                Plan This Package
+              </span>
+
             </button>
 
           </article>
@@ -173,10 +186,22 @@
 
             <button
               type="button"
-              class="btn btn-primary"
-              @click="$emit('navigate', 'planner')"
+              class="btn btn-primary package-action-button"
+              :class="{
+                'package-added': isInCart('romance')
+              }"
+              :disabled="isInCart('romance')"
+              @click="addPackage(packages[1])"
             >
-              Plan This Package
+
+              <span v-if="isInCart('romance')">
+                Added to Plan ✓
+              </span>
+
+              <span v-else>
+                Plan This Package
+              </span>
+
             </button>
 
           </article>
@@ -212,10 +237,22 @@
 
             <button
               type="button"
-              class="btn btn-secondary"
-              @click="$emit('navigate', 'planner')"
+              class="btn btn-secondary package-action-button"
+              :class="{
+                'package-added': isInCart('next-chapter')
+              }"
+              :disabled="isInCart('next-chapter')"
+              @click="addPackage(packages[2])"
             >
-              Plan This Package
+
+              <span v-if="isInCart('next-chapter')">
+                Added to Plan ✓
+              </span>
+
+              <span v-else>
+                Plan This Package
+              </span>
+
             </button>
 
           </article>
@@ -251,13 +288,138 @@
 
             <button
               type="button"
-              class="btn btn-secondary"
-              @click="$emit('navigate', 'planner')"
+              class="btn btn-secondary package-action-button"
+              :class="{
+                'package-added': isInCart('team')
+              }"
+              :disabled="isInCart('team')"
+              @click="addPackage(packages[3])"
             >
-              Plan This Package
+
+              <span v-if="isInCart('team')">
+                Added to Plan ✓
+              </span>
+
+              <span v-else>
+                Plan This Package
+              </span>
+
             </button>
 
           </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         PINIA CELEBRATION PLAN SUMMARY
+         ===================================================== -->
+
+    <section
+      v-if="cartStore.totalCount > 0"
+      class="section package-summary-section"
+    >
+
+      <div class="page-container">
+
+        <div class="package-summary-card">
+
+          <div class="package-summary-header">
+
+            <div>
+
+              <span class="hero-eyebrow">
+                Your selection
+              </span>
+
+              <h2>
+                Celebration Plan Summary
+              </h2>
+
+            </div>
+
+            <span class="summary-count">
+              {{ cartStore.totalCount }}
+              {{ cartStore.totalCount === 1 ? 'package' : 'packages' }}
+            </span>
+
+          </div>
+
+
+          <p class="package-summary-text">
+            {{ cartStore.formattedSummary }}
+          </p>
+
+
+          <div class="selected-package-list">
+
+            <article
+              v-for="item in cartStore.cart"
+              :key="item.id"
+              class="selected-package-item"
+            >
+
+              <div>
+
+                <strong>
+                  {{ item.name }}
+                </strong>
+
+                <span>
+                  ${{ item.price }}
+                </span>
+
+              </div>
+
+
+              <button
+                type="button"
+                class="remove-package-button"
+                @click="cartStore.removeItem(item.id)"
+              >
+                Remove
+              </button>
+
+            </article>
+
+          </div>
+
+
+          <div class="package-summary-total">
+
+            <span>
+              Total
+            </span>
+
+            <strong>
+              ${{ cartStore.totalCost }}
+            </strong>
+
+          </div>
+
+
+          <div class="package-summary-actions">
+
+            <button
+              type="button"
+              class="btn btn-outline"
+              @click="cartStore.resetStore"
+            >
+              Clear Selection
+            </button>
+
+            <RouterLink
+              to="/planner"
+              class="btn btn-primary"
+            >
+              Continue Planning
+            </RouterLink>
+
+          </div>
 
         </div>
 
@@ -310,13 +472,12 @@
               guest count and budget.
             </p>
 
-            <button
-              type="button"
+            <RouterLink
+              to="/planner"
               class="btn btn-primary"
-              @click="$emit('navigate', 'planner')"
             >
               Find My Package
-            </button>
+            </RouterLink>
 
           </div>
 
@@ -372,13 +533,12 @@
               better matches your event.
             </p>
 
-            <button
-              type="button"
+            <RouterLink
+              to="/planner"
               class="btn btn-primary"
-              @click="$emit('navigate', 'planner')"
             >
               Customise My Celebration
-            </button>
+            </RouterLink>
 
           </div>
 
@@ -511,13 +671,12 @@
               you organise the right starting point.
             </p>
 
-            <button
-              type="button"
+            <RouterLink
+              to="/planner"
               class="btn btn-primary"
-              @click="$emit('navigate', 'planner')"
             >
               Create My Celebration Plan
-            </button>
+            </RouterLink>
 
           </div>
 
@@ -528,11 +687,60 @@
     </section>
 
   </main>
+
 </template>
 
 
 <script setup>
 
-defineEmits(['navigate'])
+import { useCartStore } from '../stores/cart'
+
+
+const cartStore = useCartStore()
+
+
+const packages = [
+
+  {
+    id: 'birthday',
+    name: 'Golden Hour Birthday',
+    price: 149
+  },
+
+  {
+    id: 'romance',
+    name: 'Modern Romance',
+    price: 399
+  },
+
+  {
+    id: 'next-chapter',
+    name: 'Next Chapter',
+    price: 179
+  },
+
+  {
+    id: 'team',
+    name: 'Team Celebration',
+    price: 279
+  }
+
+]
+
+
+function isInCart(packageId) {
+
+  return cartStore.cart.some(
+    item => item.id === packageId
+  )
+
+}
+
+
+function addPackage(packageItem) {
+
+  cartStore.addItem(packageItem)
+
+}
 
 </script>

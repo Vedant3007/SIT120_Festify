@@ -1,62 +1,103 @@
 <template>
+
   <header class="site-header">
+
     <div class="header-container">
 
-      <!-- Festify Branding -->
-      <a href="#" class="brand" @click.prevent="$emit('navigate', 'home')">
-        <span class="brand-name">Festify</span>
-        <span class="brand-tagline">Celebrate more. Plan less.</span>
-      </a>
+      <RouterLink
+        to="/"
+        class="brand"
+      >
 
-      <!-- Navigation -->
-      <nav class="main-navigation" aria-label="Main navigation">
-        <button
-          type="button"
+        <span class="brand-name">
+          Festify
+        </span>
+
+        <span class="brand-tagline">
+          Celebrate more. Plan less.
+        </span>
+
+      </RouterLink>
+
+
+      <nav
+        class="main-navigation"
+        aria-label="Main navigation"
+      >
+
+        <RouterLink
+          to="/"
           class="nav-link"
-          :class="{ active: currentPage === 'home' }"
-          @click="$emit('navigate', 'home')"
+          exact-active-class="active"
         >
           Home
-        </button>
+        </RouterLink>
 
-        <button
-          type="button"
+
+        <RouterLink
+          to="/packages"
           class="nav-link"
-          :class="{ active: currentPage === 'packages' }"
-          @click="$emit('navigate', 'packages')"
+          active-class="active"
         >
           Packages
-        </button>
+        </RouterLink>
 
-        <button
-          type="button"
+
+        <RouterLink
+          to="/about"
           class="nav-link"
-          :class="{ active: currentPage === 'about' }"
-          @click="$emit('navigate', 'about')"
+          active-class="active"
         >
           Our Story
-        </button>
+        </RouterLink>
+
+
+        <RouterLink
+          to="/planner"
+          class="nav-cta"
+        >
+          Plan My Celebration
+        </RouterLink>
+
 
         <button
           type="button"
-          class="nav-cta"
-          @click="$emit('navigate', 'planner')"
+          class="theme-toggle"
+          :aria-label="
+            themeStore.isDarkMode
+              ? 'Switch to light mode'
+              : 'Switch to dark mode'
+          "
+          :title="
+            themeStore.isDarkMode
+              ? 'Switch to light mode'
+              : 'Switch to dark mode'
+          "
+          @click="themeStore.toggleDarkMode"
         >
-          Plan My Celebration
+
+          <span v-if="themeStore.isDarkMode">
+            ☀
+          </span>
+
+          <span v-else>
+            ☾
+          </span>
+
         </button>
+
       </nav>
 
     </div>
+
   </header>
+
 </template>
 
-<script setup>
-defineProps({
-  currentPage: {
-    type: String,
-    default: 'home'
-  }
-})
 
-defineEmits(['navigate'])
+<script setup>
+import { useThemeStore } from '../stores/theme'
+
+
+const themeStore = useThemeStore()
 </script>

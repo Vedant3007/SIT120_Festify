@@ -294,3 +294,16 @@ code {
     border-right-color: var(--border);
   }
 }
+
+.main-navigation .nav-link {
+  text-decoration: none;
+}
+
+.main-navigation .nav-cta {
+  text-decoration: none;
+}
+
+.main-navigation .nav-link:hover,
+.main-navigation .nav-link:focus {
+  text-decoration: none;
+}
