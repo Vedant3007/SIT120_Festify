@@ -28,21 +28,19 @@
 
           <div class="hero-actions">
 
-            <button
-              type="button"
+            <RouterLink
+              to="/planner"
               class="btn btn-primary"
-              @click="$emit('navigate', 'planner')"
             >
               Start Planning
-            </button>
+            </RouterLink>
 
-            <button
-              type="button"
+            <RouterLink
+              to="/packages"
               class="btn hero-secondary-btn"
-              @click="$emit('navigate', 'packages')"
             >
               Explore Packages
-            </button>
+            </RouterLink>
 
           </div>
 
@@ -317,13 +315,12 @@
 
             </ul>
 
-            <button
-              type="button"
+            <RouterLink
+              to="/packages"
               class="btn btn-primary"
-              @click="$emit('navigate', 'packages')"
             >
               Explore Celebration Packages
-            </button>
+            </RouterLink>
 
           </div>
 
@@ -453,21 +450,19 @@
 
             <div class="hero-actions">
 
-              <button
-                type="button"
+              <RouterLink
+                to="/planner"
                 class="btn btn-primary"
-                @click="$emit('navigate', 'planner')"
               >
                 Create My Celebration Plan
-              </button>
+              </RouterLink>
 
-              <button
-                type="button"
+              <RouterLink
+                to="/packages"
                 class="btn hero-secondary-btn"
-                @click="$emit('navigate', 'packages')"
               >
                 View Packages
-              </button>
+              </RouterLink>
 
             </div>
 
@@ -481,10 +476,3 @@
 
   </main>
 </template>
-
-
-<script setup>
-
-defineEmits(['navigate'])
-
-</script>

@@ -14,8 +14,13 @@
       <!-- Contact Details -->
       <div class="footer-contact">
         <h3>Contact</h3>
-        <p>Email: hello@festify.example</p>
-        <p>Phone: +61 400 123 456</p>
+        <a href="mailto:hello@festify.com">
+  hello@festify.com
+</a>
+<p></p>
+<a href="tel:0400000000">
+  0400 000 000
+</a>
         <p>Melbourne, Australia</p>
       </div>
 
@@ -23,21 +28,21 @@
       <div class="footer-links">
         <h3>Explore</h3>
 
-        <button type="button" @click="$emit('navigate', 'home')">
-          Home
-        </button>
+    <RouterLink to="/">
+      Home
+    </RouterLink>
 
-        <button type="button" @click="$emit('navigate', 'packages')">
-          Packages
-        </button>
+    <RouterLink to="/packages">
+      Packages
+    </RouterLink>
 
-        <button type="button" @click="$emit('navigate', 'about')">
-          Our Story
-        </button>
+    <RouterLink to="/about">
+      Our Story
+    </RouterLink>
 
-        <button type="button" @click="$emit('navigate', 'planner')">
-          Celebration Planner
-        </button>
+    <RouterLink to="/planner">
+      Planner
+    </RouterLink>
       </div>
 
     </div>

@@ -59,7 +59,12 @@
           Plan My Celebration
         </RouterLink>
 
-
+<span
+  class="cart-summary-badge"
+  aria-label="Selected celebration packages"
+>
+  {{ cartStore.totalCount }}
+</span>
         <button
           type="button"
           class="theme-toggle"
@@ -97,7 +102,8 @@
 
 <script setup>
 import { useThemeStore } from '../stores/theme'
-
+import { useCartStore } from '../stores/cart'
 
 const themeStore = useThemeStore()
+const cartStore = useCartStore()
 </script>

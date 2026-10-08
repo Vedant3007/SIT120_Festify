@@ -28,21 +28,19 @@
 
           <div class="hero-actions">
 
-            <button
-              type="button"
+            <RouterLink
+              to="/planner"
               class="btn btn-primary"
-              @click="$emit('navigate', 'planner')"
             >
               Start Planning
-            </button>
+            </RouterLink>
 
-            <button
-              type="button"
+            <RouterLink
+              to="/packages"
               class="btn hero-secondary-btn"
-              @click="$emit('navigate', 'packages')"
             >
               Explore Packages
-            </button>
+            </RouterLink>
 
           </div>
 
@@ -320,13 +318,12 @@
               <li>10 guest setup</li>
             </ul>
 
-            <button
-              type="button"
+            <RouterLink
+              to="/packages"
               class="btn btn-secondary"
-              @click="$emit('navigate', 'packages')"
             >
               View Packages
-            </button>
+            </RouterLink>
 
           </article>
 
@@ -357,13 +354,12 @@
               <li>30 guest setup</li>
             </ul>
 
-            <button
-              type="button"
+            <RouterLink
+              to="/packages"
               class="btn btn-primary"
-              @click="$emit('navigate', 'packages')"
             >
               View Packages
-            </button>
+            </RouterLink>
 
           </article>
 
@@ -390,13 +386,12 @@
               <li>15 guest setup</li>
             </ul>
 
-            <button
-              type="button"
+            <RouterLink
+              to="/packages"
               class="btn btn-secondary"
-              @click="$emit('navigate', 'packages')"
             >
               View Packages
-            </button>
+            </RouterLink>
 
           </article>
 
@@ -423,13 +418,12 @@
               <li>25 guest setup</li>
             </ul>
 
-            <button
-              type="button"
+            <RouterLink
+              to="/packages"
               class="btn btn-secondary"
-              @click="$emit('navigate', 'packages')"
             >
               View Packages
-            </button>
+            </RouterLink>
 
           </article>
 
@@ -466,13 +460,12 @@
               style and budget.
             </p>
 
-            <button
-              type="button"
+            <RouterLink
+              to="/planner"
               class="btn btn-primary"
-              @click="$emit('navigate', 'planner')"
             >
               Create My Celebration Plan
-            </button>
+            </RouterLink>
 
           </div>
 
@@ -484,10 +477,3 @@
 
   </main>
 </template>
-
-
-<script setup>
-
-defineEmits(['navigate'])
-
-</script>
